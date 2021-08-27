@@ -2,4 +2,10 @@
 
 ### About
 
-Personal e-commerce api. TypeScript, JWT Auth, Express, TypeORM, MongoDB.
+Personal e-commerce api.
+
+### Project
+
+- [x] Setup.
+- [ ] JWT Auth.
+- [ ] Product.
