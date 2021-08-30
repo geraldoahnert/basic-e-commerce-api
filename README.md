@@ -7,5 +7,5 @@ Personal e-commerce api.
 ### Project
 
 - [x] Setup.
-- [ ] JWT Auth.
+- [x] JWT Auth.
 - [ ] Product.
