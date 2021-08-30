@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
-    "start": "ts-node-dev --files src/server.ts", 
+    "start": "ts-node-dev --files src/server.ts",
     "typeorm": "npx ts-node ./node_modules/typeorm/cli.js"
   },
   "author": "geraldoahnert <geraldoahnert@gmail.com>",
