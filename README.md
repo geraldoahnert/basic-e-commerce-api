@@ -1,11 +1,25 @@
 # E-Commerce API
 
-### About
+![](https://img.shields.io/badge/status-in_progress-red?)
 
-Personal e-commerce api.
+#### API Preview
 
-### Project
+##### Create User
 
-- [x] Setup.
-- [x] JWT Auth.
-- [ ] Product.
+```json
+/users
+
+# post
+{
+  "email": "email@email.com",
+  "password": "password"
+}
+
+# return
+{
+  "email": "email@email.com",
+  "password": "password",
+  "id": "id"
+}
+
+```
