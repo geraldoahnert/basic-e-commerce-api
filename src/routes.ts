@@ -11,7 +11,7 @@ const userController = new UserController();
 const authController = new AuthController();
 
 router.post('/users', userController.store);
-router.post('/auth', authController.authenticate);
+router.post('/auth', authController.execute);
 router.get('/users', authMiddleware, userController.index);
 
 export default router;

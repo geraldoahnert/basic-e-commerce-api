@@ -1,40 +1,20 @@
 import { Request, response, Response } from 'express';
-import { getRepository } from 'typeorm';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-
-import User from '../models/User';
+import { AuthService } from '../services/AuthService';
 
 require('dotenv').config();
 
 class AuthController {
-  async authenticate(req: Request, res: Response) {
-    const repository = getRepository(User);
-
+  async execute(req: Request, res: Response) {
     const { email, password } = req.body;
+    const authService = new AuthService();
 
-    const user = await repository.findOne({ where: { email } });
-
-    if (!user) {
-      return res.sendStatus(401);
-    }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-      return res.sendStatus(401);
-    }
-
-    const token = jwt.sign({ id: user.id }, process.env.JWT_KEY, {
-      expiresIn: '1d',
+    const token = await authService.execute({
+      email,
+      password,
     });
 
-    delete user.password;
-
-    return response.json({
-      user,
-      token,
-    });
+    return res.json(token);
   }
 }
 
-export default new AuthController();
+export { AuthController };
