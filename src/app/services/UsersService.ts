@@ -27,7 +27,7 @@ class UserService {
       throw new Error('Email already exists!');
     }
 
-    const passwordHash = await hash(password, 0);
+    const passwordHash = await hash(password, 8);
 
     const user = usersRepositories.create({ email, password: passwordHash });
 
