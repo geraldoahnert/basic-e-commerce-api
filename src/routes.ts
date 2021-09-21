@@ -19,6 +19,6 @@ router.post('/auth', authController.execute);
 router.get('/users', authMiddleware, userController.index);
 
 router.post('/product', productController.store);
-// router.get('/product/:id', productController.show);
+router.get('/product/:id', productController.index);
 
 export default router;
