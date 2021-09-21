@@ -15,7 +15,7 @@ const authController = new AuthController();
 const productController = new ProductController();
 
 router.post('/users', userController.store);
-router.post('/auth', authController.execute);
+router.post('/login', authController.execute);
 router.get('/users', authMiddleware, userController.index);
 
 router.post('/product', productController.store);
