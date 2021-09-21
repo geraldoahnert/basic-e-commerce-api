@@ -2,7 +2,17 @@ import { Request, Response } from 'express';
 import { ProductService } from '../services/ProductService';
 
 class ProductController {
-  async show(req: Request, res: Response) {}
+  async index(req: Request, res: Response) {
+    const id = req.params.id;
+
+    const productService = new ProductService();
+
+    const showProduct = await productService.show({
+      id,
+    });
+
+    return res.json(showProduct);
+  }
 
   async store(req: Request, res: Response) {
     const { product, price } = req.body;
