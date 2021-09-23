@@ -1,26 +1,32 @@
 import { Router } from 'express';
 
-import authMiddleware from './app/middlewares/authMiddleware';
-
 import { UserController } from './app/controllers/UserController';
+
 import { AuthController } from './app/controllers/AuthController';
 
-import { ProductController } from './app/controllers/ProductController';
+import { ProductRegisterController } from './app/controllers/ProductRegisterController';
+import { ProductShowController } from './app/controllers/ProductShowController';
+import { ProductDeleteController } from './app/controllers/ProductDeleteController';
+
+import authMiddleware from './app/middlewares/authMiddleware';
 
 const router = Router();
 
 const userController = new UserController();
+
 const authController = new AuthController();
 
-const productController = new ProductController();
+const productRegisterController = new ProductRegisterController();
+const productShowController = new ProductShowController();
+const productDeleteController = new ProductDeleteController();
 
-router.post('/users', userController.store);
-router.get('/users', authMiddleware, userController.index);
+router.post('/users', userController.handle);
+router.get('/users', authMiddleware, userController.handle);
 
-router.post('/login', authController.execute);
+router.post('/login', authController.handle);
 
-router.post('/product', productController.store);
-router.get('/product/:id', productController.index);
-router.delete('/product/:id', productController.remove);
+router.post('/product', productRegisterController.handle);
+router.get('/product/:id', productShowController.handle);
+router.delete('/product/:id', productDeleteController.handle);
 
 export default router;

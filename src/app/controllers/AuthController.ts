@@ -4,7 +4,7 @@ import { AuthService } from '../services/AuthService';
 require('dotenv').config();
 
 class AuthController {
-  async execute(req: Request, res: Response) {
+  async handle(req: Request, res: Response) {
     const { email, password } = req.body;
     const authService = new AuthService();
 
