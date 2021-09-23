@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { UserService } from '../services/UsersService';
 
 class UserController {
-  index(req: Request, res: Response) {
+  handle(req: Request, res: Response) {
     return res.send({
       userID: req.userId,
     });
