@@ -15,10 +15,12 @@ const authController = new AuthController();
 const productController = new ProductController();
 
 router.post('/users', userController.store);
-router.post('/login', authController.execute);
 router.get('/users', authMiddleware, userController.index);
+
+router.post('/login', authController.execute);
 
 router.post('/product', productController.store);
 router.get('/product/:id', productController.index);
+router.delete('/product/:id', productController.remove);
 
 export default router;
