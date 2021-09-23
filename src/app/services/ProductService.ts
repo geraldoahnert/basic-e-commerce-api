@@ -1,8 +1,6 @@
-import { json } from 'stream/consumers';
 import { getCustomRepository } from 'typeorm';
 import { ProductsRepositories } from '../repositories/ProductsRepositories';
-
-interface IShowProduct {
+interface IGetProduct {
   id: string;
 }
 
@@ -12,7 +10,18 @@ interface IProduct {
 }
 
 class ProductService {
-  async show({ id }: IShowProduct) {
+  async remove({ id }: IGetProduct) {
+    const productRepositories = getCustomRepository(ProductsRepositories);
+
+    const findProduct = await productRepositories.findOne({
+      where: { id: id },
+    });
+    const deleteProduct = productRepositories.remove(findProduct);
+
+    return deleteProduct;
+  }
+
+  async show({ id }: IGetProduct) {
     const productsRepositories = getCustomRepository(ProductsRepositories);
 
     const findProduct = productsRepositories.find({ where: { id: id } });
