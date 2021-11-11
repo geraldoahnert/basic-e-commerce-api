@@ -10,13 +10,14 @@ const userController = new UserController();
 const authController = new AuthController();
 const productController = new ProductController();
 
-router.post('/users', userController.handle);
-router.get('/users', authMiddleware, userController.handle);
-
 router.post('/login', authController.handle);
 
-router.post('/product', productController.create);
-router.get('/product/:id', productController.show);
-router.delete('/product/:id', productController.delete);
+router.post('/users', authMiddleware, userController.handle);
+router.get('/users', authMiddleware, userController.handle);
+
+router.post('/product', authMiddleware, productController.create);
+router.get('/product/:id', authMiddleware, productController.show);
+router.delete('/product/:id', authMiddleware, productController.delete);
+router.put('/product/:id', authMiddleware, productController.update);
 
 export default router;
